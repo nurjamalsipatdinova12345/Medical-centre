@@ -1,0 +1,91 @@
+{% load static %}
+    <!-- Featured Departments Section -->
+    <section id="departments" class="featured-departments section pb-0" >
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+       {% if departmentcategories %}
+        <h2>{{ departmentcategories.name }}</h2>
+        <p>{{ departmentcategories.title }}</p>
+       {% endif %}
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="departments-showcase">
+
+          <div class="featured-department" data-aos="fade-up" data-aos-delay="200">
+            <div class="row align-items-center">
+              <div class="col-lg-6 order-lg-1">
+                <div class="department-content">
+                  <div class="department-category">Tez medicinalıq járdem.</div>
+                 {% if departmentcategories %}
+                  <h2 class="department-title">{{ departmentcategories.text }}</h2>
+                  <p class="department-description"> {{ departmentcategories.description }}</p>
+                 {% endif %}
+                  <div class="department-features">
+                    <div class="feature-item">
+                      <i class="fas fa-check-circle"></i>
+                     {% if departmentcategories %}
+                      <span>{{ departmentcategories.text1 }}</span>
+                     {% endif %}
+                    </div>
+                    <div class="feature-item">
+                      <i class="fas fa-check-circle"></i>
+                     {% if departmentcategories %}
+                      <span>{{ departmentcategories.text2 }}</span>
+                     {% endif %}
+                    </div>
+                    <div class="feature-item">
+                      <i class="fas fa-check-circle"></i>
+                     {% if departmentcategories %}
+                      <span>{{ departmentcategories.text3 }}</span>
+                     {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 order-lg-2">
+                <div class="department-visual">
+                  <div class="image-wrapper">
+                   {% if departmentcategories and departmentcategories.image %}
+                    <img src="{{ departmentcategories.image.url }}" alt="About Image 1" class="img-fluid">
+                   {% else %}
+                    <img src="{% static 'assets/img/health/emergency-3.webp' %}" alt="Emergency Department" class="img-fluid">
+                   {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="departments-grid">
+            <div class="row">
+              {% for department in departments %}
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="department-card">
+                  <div class="card-icon">
+                    <i class="{{ department.icon }}"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="card-title">{{ department.name }}</h3>
+                    <p class="card-description">{{ department.description }}</p>
+                    <div class="card-stats">
+                      <div class="stat-item">
+                        <span class="stat-number">{{ department.doc_num }}</span>
+                        <span class="stat-label">Specialists</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-number">{{ department.pro_num }}</span>
+                        <span class="stat-label">Procedures</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Featured Departments Section -->

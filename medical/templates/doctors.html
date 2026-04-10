@@ -1,0 +1,72 @@
+{% load static %}
+    <!-- Find A Doctor Section -->
+    <section id="doctors" class="find-a-doctor section ">
+      <div class="container text-center mb-5" data-aos="fade-up">
+    <h1 class="display-5 fw-bold">Tajiriybeli doktorlarimiz benen tanisin</h1>
+  </div>
+      <!-- Section Title -->
+      <div class="container section-title mt-0 pt-0" data-aos="fade-up">
+       {% if doctorpage %}
+        <h2>{{ doctorpage.name }}</h2>
+        <p>{{ doctorpage.title }}</p>
+       {% endif %}
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-10">
+            <div class="search-header">
+             {% if doctorpage %}
+              <h2>{{ doctorpage.text }}</h2>
+              <p>{{ doctorpage.description }}</p>
+             {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="specialists-showcase" data-aos="fade-up" data-aos-delay="300">
+          {% for doctor in doctors %}
+          <div class="specialist-card featured" data-aos="slide-up" data-aos-delay="100">
+            <div class="card-content">
+              <div class="specialist-info">
+                <div class="profile-section">
+                  <div class="profile-image">
+                    {% if doctor.image %}
+                    <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}" class="img-fluid">
+                    {% else %}
+                    <img src="{% static 'assets/img/health/default-doctor.webp' %}" alt="{{ doctor.name }}" class="img-fluid">
+                    {% endif %}
+                    <div class="online-status active"></div>
+                  </div>
+                  <div class="specialist-data">
+                    <h3>{{ doctor.name }}</h3>
+                    <p class="specialty">{{ doctor.specialty }}</p>
+                    <div class="credentials">
+                        <span class="experience">{{ doctor.experience_years }} years</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="rating-info">
+                  <div class="stars-display">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+                  <span class="score">5</span>
+                  <small>{{ doctor.pro_num }} patients</small>
+                </div>
+              </div>
+              <div class="quick-actions">
+                <a href="#" class="action-btn outline">Profile</a>
+                <a href="#appointment" class="action-btn primary">Consult</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </section><!-- /Find A Doctor Section -->
